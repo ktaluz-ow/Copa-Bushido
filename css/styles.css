@@ -1,0 +1,166 @@
+/* Minimal reset and full-viewport stage */
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; height: 100%; }
+body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; color: #fff; }
+.stage {
+  position: relative;
+  width: 100vw; height: 100vh;
+  overflow: hidden;
+  background: #000 center/cover no-repeat;
+}
+.bg { position:absolute; inset:0; background-position:center; background-size:cover; filter:none; }
+.hotspot {
+  position: absolute;
+  cursor: pointer;
+  background: rgba(255,255,255,0);
+  border: none;
+}
+.debug .hotspot { outline: 2px dashed rgba(0,255,255,.7); background: rgba(0,255,255,.08); }
+.invisible-input {
+  position: absolute;
+  width: 20%;
+  height: 28px;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 18px;
+  padding: 0 6px;
+}
+.debug .invisible-input { outline: 1px dashed rgba(255,255,0,.75); background: rgba(255,255,0,.08); }
+.overlay-text {
+  position: absolute;
+  user-select: none;
+  font-weight: 700;
+  text-shadow: 0 2px 8px rgba(0,0,0,.6);
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+.debug .overlay-text { outline: 1px dashed rgba(255,255,255,.25); }
+.visually-hidden {
+  position: absolute !important;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 0; border: 0; height: 1px; width: 1px; overflow: hidden;
+}
+.flash {
+  animation: flash 0.8s ease-in-out 1;
+}
+@keyframes flash {
+  0% { filter: brightness(1); }
+  20% { filter: brightness(2); }
+  100% { filter: brightness(1); }
+}
+:root {
+  --home-sorteo-left: 22%;
+  --home-sorteo-top: 78%;
+  --home-sorteo-w: 18%;
+  --home-sorteo-h: 10%;
+  --home-kumite-left: 41%;
+  --home-kumite-top: 78%;
+  --home-kumite-w: 18%;
+  --home-kumite-h: 10%;
+  --home-kata-left: 60%;
+  --home-kata-top: 78%;
+  --home-kata-w: 18%;
+  --home-kata-h: 10%;
+}
+:root {
+  --sorteo-volver-left: 4%;
+  --sorteo-volver-top: 5%;
+  --sorteo-volver-w: 10%;
+  --sorteo-volver-h: 7%;
+  --sorteo-pop-left: 78%;
+  --sorteo-pop-top: 5%;
+  --sorteo-pop-w: 18%;
+  --sorteo-pop-h: 7%;
+  --sorteo-etiqueta-left: 78%;
+  --sorteo-etiqueta-top: 14%;
+  --sorteo-etiqueta-w: 18%;
+  --sorteo-etiqueta-h: 7%;
+  --sorteo-girar-left: 78%;
+  --sorteo-girar-top: 23%;
+  --sorteo-girar-w: 18%;
+  --sorteo-girar-h: 7%;
+  --sorteo-list-left: 8%;
+  --sorteo-list-top: 30%;
+  --sorteo-list-w: 64%;
+  --sorteo-list-h: 60%;
+}
+:root {
+  --kumite-volver-left: 4%;
+  --kumite-volver-top: 5%;
+  --kumite-volver-w: 10%;
+  --kumite-volver-h: 7%;
+  --kumite-pop-left: 78%;
+  --kumite-pop-top: 5%;
+  --kumite-pop-w: 18%;
+  --kumite-pop-h: 7%;
+  --kumite-fin-left: 62%;
+  --kumite-fin-top: 13%;
+  --kumite-fin-w: 16%;
+  --kumite-fin-h: 7%;
+  --kumite-pg-left: 80%;
+  --kumite-pg-top: 13%;
+  --kumite-pg-w: 16%;
+  --kumite-pg-h: 7%;
+  --kumite-time-disp-left: 41%;
+  --kumite-time-disp-top: 14%;
+  --kumite-time-disp-w: 18%;
+  --kumite-time-disp-h: 10%;
+  --kumite-init-left: 36%;
+  --kumite-init-top: 26%;
+  --kumite-init-w: 12%;
+  --kumite-init-h: 7%;
+  --kumite-reinit-left: 50%;
+  --kumite-reinit-top: 26%;
+  --kumite-reinit-w: 16%;
+  --kumite-reinit-h: 7%;
+  --kumite-reset-left: 68%;
+  --kumite-reset-top: 26%;
+  --kumite-reset-w: 16%;
+  --kumite-reset-h: 7%;
+  --kumite-2m-left: 25%;
+  --kumite-2m-top: 26%;
+  --kumite-2m-w: 8%;
+  --kumite-2m-h: 7%;
+  --kumite-5m-left: 17%;
+  --kumite-5m-top: 26%;
+  --kumite-5m-w: 8%;
+  --kumite-5m-h: 7%;
+  --kumite-anytime-left: 8%;
+  --kumite-anytime-top: 26%;
+  --kumite-anytime-w: 8%;
+  --kumite-anytime-h: 7%;
+  --aka-waza-left: 18%;
+  --aka-waza-top: 60%;
+  --aka-waza-w: 10%;
+  --aka-waza-h: 6%;
+  --aka-ippon-left: 18%;
+  --aka-ippon-top: 69%;
+  --aka-ippon-w: 10%;
+  --aka-ippon-h: 6%;
+  --aka-pen-left: 18%;
+  --aka-pen-top: 78%;
+  --aka-pen-w: 10%;
+  --aka-pen-h: 6%;
+  --shi-waza-left: 72%;
+  --shi-waza-top: 60%;
+  --shi-waza-w: 10%;
+  --shi-waza-h: 6%;
+  --shi-ippon-left: 72%;
+  --shi-ippon-top: 69%;
+  --shi-ippon-w: 10%;
+  --shi-ippon-h: 6%;
+  --shi-pen-left: 72%;
+  --shi-pen-top: 78%;
+  --shi-pen-w: 10%;
+  --shi-pen-h: 6%;
+  --kumite-score-aka-left: 35%;
+  --kumite-score-aka-top: 60%;
+  --kumite-score-aka-w: 12%;
+  --kumite-score-aka-h: 10%;
+  --kumite-score-shi-left: 53%;
+  --kumite-score-shi-top: 60%;
+  --kumite-score-shi-w: 12%;
+  --kumite-score-shi-h: 10%;
+}
